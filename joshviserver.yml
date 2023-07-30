@@ -57,7 +57,6 @@ Resources:
           cd /var/www/html
           echo "Udagram Demo Web Server Up and Running!" > index.html
       ImageId: ami-03f65b8614a860c29
-      KeyName: joshvikey
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: t2.micro
