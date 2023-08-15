@@ -1,6 +1,6 @@
 version: 2.1
 
-#orbs:
+orbs:
   #win: circleci/windows@5.0.0 # The Windows orb gives you everything you need to start using the Windows executor.
 
 jobs:
