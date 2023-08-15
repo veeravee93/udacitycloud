@@ -1,19 +1,25 @@
 version: 2.1
-  jobs:
-    print_hello:
+
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+
+jobs:
+  print_hello:
       docker:
         - image: cimg/node:17.2.0 # the primary container, where your job's commands are 
       steps:
         - run: echo "hello" # run the `echo` command
-    print_world:
+  print_world:
       docker:
         - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
       steps:
         - run: echo "world" # run the `echo` command
-  workflows:
-    joshvi-workflow:
-      jobs:
-        - print_hello
-        - print_world
-            requires:
-              - print_hello
+        
+workflows:
+  joshvi-workflow:
+    jobs:
+      - print_hello
+      - print_world
+          requires:
+            - print_hellov
