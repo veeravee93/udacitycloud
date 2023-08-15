@@ -1,6 +1,5 @@
 version: 2.1
-  orbs:
-    # Declare a dependency on the welcome-orb
+  orbs: # Declare a dependency on the welcome-orb
     welcome: circleci/welcome-orb@0.4.1
   jobs:
     print_hello:
@@ -9,8 +8,6 @@ version: 2.1
       steps:
         - run: echo "hello" # run the `echo` command
     print_world:
-      requires:
-        - priint_hello
       docker:
         - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
       steps:
