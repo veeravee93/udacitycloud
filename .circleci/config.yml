@@ -1,20 +1,23 @@
 version: 2.1
-
 orbs:
-  win: circleci/windows@5.0.0 # The Windows orb gives you everything you need to start using the Windows executor.
-
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
 jobs:
-  hello-job:
-    executor:
-      name: win/default # executor type
-      size: "medium" # resource class, can be "medium", "large", "xlarge", "2xlarge", defaults to "medium" if not specified
-
+  print_hello:
+    docker:
+      - image: cimg/node:17.2.0 # the primary container, where your job's commands are 
     steps:
-      # Commands are run in a Windows virtual machine environment
-      - checkout
-      - run: Write-Host 'Hello, Windows'
-
+      - run: echo "hello" # run the `echo` command
+jobs:
+  print_world:
+    requires:
+      - priint_hello
+    docker:
+      - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
+    steps:
+      - run: echo "world" # run the `echo` command
 workflows:
   my-workflow:
     jobs:
-      - hello-job
+      - print_hello
+      - print_world
