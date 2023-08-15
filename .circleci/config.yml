@@ -1,12 +1,11 @@
 version: 2.1
 
 jobs:
-  welcome_owner:
+  env_details:
       docker:
         - image: cimg/node:17.2.0 # the primary container, where your job's commands are 
       steps:
-        - run: echo $Owner_Name
-        
+        - run: echo ${Owner_Name}
   print_hello:
       docker:
         - image: cimg/node:17.2.0 # the primary container, where your job's commands are 
@@ -21,7 +20,10 @@ jobs:
 workflows:
   joshvi-workflow:
     jobs:
-      - print_hello
+      - env_details
+      - print_hello:
+          requires:
+            - env_details
       - print_world:
           requires:
             - print_hello
