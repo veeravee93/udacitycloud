@@ -19,5 +19,8 @@ jobs:
 workflows:
   joshvi-workflow:
     jobs:
+      - welcome/run
       - print_hello
-      - print_world
+      - print_world:
+          requires:
+            - print_hello
