@@ -5,7 +5,7 @@ version: 2.1
 
 jobs:
   hello-job:
-  machine:
+    machine:
       image: windows-default
     #executor:
       #name: win/default # executor type
