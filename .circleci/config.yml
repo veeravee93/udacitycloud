@@ -1,4 +1,14 @@
 version: 2.1
+commands:
+  failure:
+    steps:
+      - run: 
+          name: on error
+          command: echo "Hello Error!"
+          when: on_fail
+  reusable:
+    steps:
+      - run: echo ${CIRCLE_WORKFLOW_ID}
 
 jobs:
   env_details:
@@ -6,29 +16,31 @@ jobs:
         - image: cimg/base:2020.01
       steps:
       - checkout
-      - run:
-          name: "echo an env var that is part of our project"
-          command: |
-               echo $CIRCLE_WORKFLOW_ID
-               echo $Owner_Name
+      - reusable
+      - run: echo $Owner_Name
         
   print_hello:
       docker:
         - image: cimg/node:17.2.0 # the primary container, where your job's commands are 
       steps:
+        - checkout
+        - reusable
         - run: echo "Hello Joshvi" > ~/output.txt # run the `echo` command and save file
         - persist_to_workspace:
            root: ~/
            paths:
              - output.txt
+        - failure
   print_world:
       docker:
         - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
       steps:
+        - checkout
         - run: echo "world" # run the `echo` command
         - attach_workspace:
             at: ~/
         - run: cat ~/output.txt
+        - run: echo ~/output.txt
 
 workflows:
   joshvi-workflow:
