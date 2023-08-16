@@ -28,8 +28,9 @@ jobs:
         - run: echo "Hello Joshvi" > ~/output.txt # run the `echo` command and save file
         - persist_to_workspace:
            root: ~/
-           paths:
-             - output.txt
+           paths:  
+           - output.txt
+        - run: exit 1
         - failure
   print_world:
       docker:
