@@ -8,10 +8,13 @@ jobs:
       - add_ssh_keys:
           fingerprints: ["c1:6f:0b:5a:a3:b0:29:db:a4:02:4c:62:39:05:1d:04"] # You can get this ID in the section where you registered the SSH Key
       - run:
-          name: Install dependencies
+          name: Install Ansible
           command: |
             # install the dependencies needed for your playbook
-            apk add --update ansible 
+            #apk add --update ansible 
+            apt-get update -y
+            apt install ansible -y
+            which ansible
       - run:
           name: Configure server
           command: |
