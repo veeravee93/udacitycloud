@@ -1,2 +1,2 @@
 [all]
-ec2-35-90-242-248.us-west-2.compute.amazonaws.com
+35.90.242.248
