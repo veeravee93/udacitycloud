@@ -2,7 +2,7 @@
 # Exercise for setting up a web server in an EC
 - name: Exercise for setting up a web server in an EC   
   # Use the public IP if the VM is already created
-  hosts: 35.90.242.248
+  hosts: 54.190.38.155
   # For Ubuntu instances, the user will be `ubuntu`
   # For Amazon LInux 2 instance, the user will be `ec2-user`
   user: ubuntu
